@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  /* Core palette — engineering console, not generic dark-SaaS */
+  --ink: #0a0e14;        /* base background */
+  --panel: #0f1620;      /* raised surface */
+  --panel-2: #131c28;    /* deeper surface */
+  --line: #1c2530;       /* hairline borders */
+  --line-bright: #29384a;
+  --text: #c9d1d9;       /* primary text, desaturated */
+  --text-dim: #768390;   /* secondary text */
+  --text-faint: #4b5563;
+
+  --flow: #5eead4;       /* cyan — "data in motion" */
+  --flow-dim: #2dd4bf33;
+  --signal: #f59e0b;     /* amber — status / governance highlight */
+  --signal-dim: #f59e0b22;
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-line-bright: var(--line-bright);
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-text-faint: var(--text-faint);
+  --color-flow: var(--flow);
+  --color-signal: var(--signal);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(94, 234, 212, 0.06), transparent),
+    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(245, 158, 11, 0.04), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--flow-dim);
+  color: var(--text);
+}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--flow);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
